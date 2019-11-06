@@ -1,0 +1,51 @@
+{
+  "name": "@z1digitalstudio/autogen",
+  "version": "0.0.1-beta.2",
+  "main": "build/index.js",
+  "author": "Pablo Rodríguez Caballero <pablo@z1.digital>",
+  "license": "MIT",
+  "bin": {
+    "autogen": "build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "yarn build",
+    "test": "exit 0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "tslint --project tsconfig.json -c tslint.json --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "chokidar": "^3.3.0",
+    "class-validator": "^0.11.0",
+    "glob": "^7.1.5",
+    "handlebars": "^4.5.1",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/node": "^12.12.5",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "tslint": "^6.0.0-beta0",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.7.2"
+  }
+}

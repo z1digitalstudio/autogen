@@ -1,0 +1,22 @@
+name: Deploy package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.13.0
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-node-12.13.0-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - run: yarn
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN" >> ~/.npmrc && yarn publish --access public
+        env:
+          NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}

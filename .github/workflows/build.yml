@@ -1,0 +1,26 @@
+name: Build package
+
+on: push
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node:
+          - 12.13.0
+          - 10.17.0
+          - 8.16.2
+        os:
+          - ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-node-${{ matrix.node }}-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - run: yarn
+      - run: yarn build
