@@ -1,6 +1,6 @@
 {
   "name": "@z1digitalstudio/autogen",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "main": "build/index.js",
   "author": "Pablo Rodríguez Caballero <pablo@z1.digital>",
   "license": "MIT",
