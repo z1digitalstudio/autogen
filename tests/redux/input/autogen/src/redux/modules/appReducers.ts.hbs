@@ -1,0 +1,9 @@
+{{#each modules}}
+import { reducer as {{this}} } from './{{this}}';
+{{/each}}
+
+export const appReducers = {
+{{#each modules}}
+  {{this}},
+{{/each}}
+};

@@ -1,0 +1,14 @@
+{{#each modules}}
+import { {{upperCamelCase this}}Action, {{upperCamelCase this}}State } from './{{this}}';
+{{/each}}
+
+export type AppAction =
+{{#each modules}}
+  | {{upperCamelCase this}}Action
+{{/each}}
+
+export interface AppState {
+{{#each modules}}
+  {{this}}: {{upperCamelCase this}}State;
+{{/each}}
+}
