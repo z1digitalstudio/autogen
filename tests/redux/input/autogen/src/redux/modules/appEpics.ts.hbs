@@ -1,0 +1,10 @@
+import { combineEpics } from 'redux-observable';
+{{#each modules}}
+import { epic as {{this}} } from './{{this}}';
+{{/each}}
+
+export const appEpics = combineEpics(
+{{#each modules}}
+  {{this}},
+{{/each}}
+);

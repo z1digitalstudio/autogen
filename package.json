@@ -1,6 +1,6 @@
 {
   "name": "@z1digitalstudio/autogen",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "main": "build/index.js",
   "author": "Pablo Rodríguez Caballero <pablo@z1.digital>",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts'",
     "lint:fix": "yarn lint --fix",
     "prepare": "yarn build",
-    "test": "exit 0"
+    "test": "yarn build && jest"
   },
   "husky": {
     "hooks": {
@@ -20,7 +20,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.{ts}!tests/*/{input,output}/**/*": [
       "tslint --project tsconfig.json -c tslint.json --fix",
       "git add"
     ],
@@ -33,19 +33,28 @@
     "chokidar": "^3.3.0",
     "class-validator": "^0.11.0",
     "glob": "^7.1.5",
-    "handlebars": "^4.5.1",
+    "handlebars": "^4.5.3",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/node": "^12.12.5",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
-    "tslint": "^6.0.0-beta0",
+    "@types/jest": "^24.0.23",
+    "@types/ncp": "^2.0.3",
+    "@types/node": "^12.12.17",
+    "@types/rimraf": "^2.0.3",
+    "execa": "^3.4.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "lodash": "^4.17.15",
+    "ncp": "^2.0.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.2.0",
+    "tslint": "^6.0.0-beta1",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   }
 }
